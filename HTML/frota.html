@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frota - Sistema de Gestão Fazenda</title>
+</head>
+
+<body>
+    <header>
+        <h1>Controle de Frota Agrícola</h1>
+        <nav aria-label="Menu de Navegação Principal">
+            <ul>
+                <li><a href="index.html">Dashboard Inicial</a></li>
+                <li><a href="talhoes.html">Gestão de Talhões</a></li>
+                <li><a href="equipe.html">Quadro de Equipe</a></li>
+                <li><a href="frota.html" aria-current="page">Controle de Frota</a></li>
+            </ul>
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        <section>
+            <h2>Inventário de Maquinário</h2>
+            <dl>
+                <dt><strong>Trator Valmet 88</strong></dt>
+                <dd>Frota 01. Manutenção em dia. Última revisão técnica realizada em 10/10/2026.</dd>
+
+                <dt><strong>Colheitadeira Case IH</strong></dt>
+                <dd>Frota 02. Em operação contínua no Talhão Norte. Nível de combustível atual: 75%.</dd>
+
+                <dt><strong>Caminhão Mercedes-Benz 1620</strong></dt>
+                <dd>Frota 03. Destinado ao transporte de sacas para a cooperativa.</dd>
+            </dl>
+        </section>
+
+        <section>
+            <h2>Registro de Ocorrência / Manutenção</h2>
+            <form action="#" method="POST">
+                <fieldset>
+                    <legend>Adicionar Registro Diário</legend>
+
+                    <div>
+                        <label for="veiculo">Selecione o Veículo:</label>
+                        <select id="veiculo" name="veiculo">
+                            <option value="trator1">Trator Valmet 88</option>
+                            <option value="colheitadeira1">Colheitadeira Case IH</option>
+                            <option value="caminhao1">Caminhão MB 1620</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="descricaoProblema">Descrição do Problema ou Serviço Feito:</label>
+                        <br>
+                        <textarea id="descricaoProblema" name="descricaoProblema" rows="4" cols="50" required
+                            placeholder="Descreva os serviços realizados, como alinhamento, troca de óleo, sangria de freios..."></textarea>
+                    </div>
+                    <br>
+                    <div>
+                        <input type="checkbox" id="revisaoConcluida" name="revisaoConcluida">
+                        <label for="revisaoConcluida">Serviço já foi concluído e faturado</label>
+                    </div>
+                    <br>
+                    <div>
+                        <button type="submit">Salvar Registro</button>
+                    </div>
+                </fieldset>
+            </form>
+        </section>
+    </main>
+
+    <hr>
+    <footer>
+        <p>Sistema Principal de Gerenciamento &copy; 2026</p>
+    </footer>
+</body>
+
+</html>

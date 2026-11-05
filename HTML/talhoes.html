@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talhões - Sistema de Gestão Fazenda</title>
+</head>
+
+<body>
+    <header>
+        <h1>Módulo de Talhões</h1>
+        <nav aria-label="Menu de Navegação Principal">
+            <ul>
+                <li><a href="index.html">Dashboard Inicial</a></li>
+                <li><a href="talhoes.html" aria-current="page">Gestão de Talhões</a></li>
+                <li><a href="equipe.html">Quadro de Equipe</a></li>
+                <li><a href="frota.html">Controle de Frota</a></li>
+            </ul>
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        <section>
+            <h2>Cadastro de Novo Talhão</h2>
+            <form action="#" method="POST">
+                <fieldset>
+                    <legend>Dados da Área de Plantio</legend>
+
+                    <div>
+                        <label for="nomeTalhao">Identificação do Talhão:</label>
+                        <input type="text" id="nomeTalhao" name="nomeTalhao" required placeholder="Ex: Talhão Sul 01">
+                    </div>
+                    <br>
+                    <div>
+                        <label for="hectares">Tamanho (em Hectares):</label>
+                        <input type="number" id="hectares" name="hectares" min="1" required>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="variedadeCafe">Variedade Cultivada:</label>
+                        <select id="variedadeCafe" name="variedadeCafe">
+                            <option value="catuai">Catuaí Vermelho</option>
+                            <option value="mundoNovo">Mundo Novo</option>
+                            <option value="bourbon">Bourbon Amarelo</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div>
+                        <button type="submit">Salvar Talhão no Banco CSV</button>
+                        <button type="reset">Limpar Formulário</button>
+                    </div>
+                </fieldset>
+            </form>
+        </section>
+
+        <section>
+            <h2>Talhões Registrados</h2>
+            <ul>
+                <li><strong>Talhão Norte 02:</strong> 15 hectares (Catuaí Vermelho) - <em>Em fase de maturação</em></li>
+                <li><strong>Talhão Vale Verde:</strong> 8 hectares (Mundo Novo) - <em>Colheita finalizada</em></li>
+            </ul>
+        </section>
+    </main>
+
+    <hr>
+    <footer>
+        <p>Sistema Principal de Gerenciamento &copy; 2026</p>
+    </footer>
+</body>
+
+</html>

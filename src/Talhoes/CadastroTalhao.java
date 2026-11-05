@@ -57,7 +57,7 @@ public class CadastroTalhao {
         totalTalhoes++;
 
         // Salva os dados no arquivo CSV
-        PersistenciaTalhao.salvarTalhoesCSV();
+        persistenciaTalhao.salvarTalhoesCSV();
 
         System.out.println("Talhão cadastrado com sucesso.");
     }
