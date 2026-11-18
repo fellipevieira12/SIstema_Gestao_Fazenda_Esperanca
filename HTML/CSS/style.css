@@ -1,0 +1,394 @@
+/* =========================================
+   1. VARIÁVEIS CSS E RESET BÁSICO
+   ========================================= */
+:root {
+    /* Paleta de Cores (Contraste > 4.5:1 validado) */
+    --cor-primaria: #1b4332;
+    /* Verde Café Escuro */
+    --cor-secundaria: #2d6a4f;
+    /* Verde Folha */
+    --cor-destaque: #d8f3dc;
+    /* Verde Claro Suave */
+    --cor-fundo: #f8f9fa;
+    /* Cinza Muito Claro */
+    --cor-superficie: #ffffff;
+    /* Branco Puro */
+    --cor-texto: #212529;
+    /* Cinza Quase Preto */
+    --cor-texto-claro: #ffffff;
+    --cor-borda: #ced4da;
+    --cor-alerta-fundo: #fff3cd;
+    --cor-alerta-borda: #ffc107;
+
+    /* Tipografia e Espaçamentos */
+    --fonte-principal: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --espacamento-xs: 0.5rem;
+    --espacamento-sm: 1rem;
+    --espacamento-md: 1.5rem;
+    --espacamento-lg: 2.5rem;
+    --raio-borda: 6px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* =========================================
+   2. ACESSIBILIDADE (Foco por Teclado)
+   ========================================= */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+    outline: 3px solid #ff9f1c;
+    outline-offset: 2px;
+}
+
+/* =========================================
+   3. CABEÇALHO E NAVEGAÇÃO (FLEXBOX)
+   ========================================= */
+header {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-claro);
+    padding: var(--espacamento-md) var(--espacamento-sm);
+    text-align: center;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+header p {
+    font-size: 0.95rem;
+    color: var(--cor-destaque);
+    margin-bottom: var(--espacamento-sm);
+}
+
+header hr {
+    display: none;
+    /* Oculta o hr visualmente, pois o CSS já separa o header */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    /* Mobile-first: menu empilhado */
+    gap: var(--espacamento-xs);
+    margin-top: var(--espacamento-sm);
+}
+
+nav a {
+    display: block;
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+    padding: 0.6rem var(--espacamento-sm);
+    background-color: var(--cor-secundaria);
+    border-radius: var(--raio-borda);
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+nav a:hover,
+nav a[aria-current="page"] {
+    background-color: var(--cor-destaque);
+    color: var(--cor-primaria);
+}
+
+/* =========================================
+   4. CONTEÚDO PRINCIPAL E SECÇÕES
+   ========================================= */
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--espacamento-md) var(--espacamento-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacamento-md);
+}
+
+section {
+    background-color: var(--cor-superficie);
+    padding: var(--espacamento-md);
+    border-radius: var(--raio-borda);
+    border: 1px solid var(--cor-borda);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    color: var(--cor-primaria);
+    font-size: 1.35rem;
+    margin-bottom: var(--espacamento-sm);
+    border-bottom: 2px solid var(--cor-destaque);
+    padding-bottom: 0.4rem;
+}
+
+h3 {
+    color: var(--cor-secundaria);
+    font-size: 1.15rem;
+    margin: var(--espacamento-sm) 0 0.5rem 0;
+}
+
+p,
+ul,
+dl {
+    margin-bottom: var(--espacamento-sm);
+}
+
+section ul {
+    padding-left: 1.5rem;
+}
+
+/* Caixa de Alertas (Aside) */
+aside {
+    background-color: var(--cor-alerta-fundo);
+    border-left: 4px solid var(--cor-alerta-borda);
+    padding: var(--espacamento-sm);
+    border-radius: var(--raio-borda);
+    margin-top: var(--espacamento-sm);
+}
+
+aside h3 {
+    color: #664d03;
+    margin-top: 0;
+}
+
+/* Listas de Definição (Frota) */
+dl dt {
+    color: var(--cor-primaria);
+    margin-top: var(--espacamento-sm);
+}
+
+dl dd {
+    margin-left: var(--espacamento-sm);
+    padding-left: var(--espacamento-sm);
+    border-left: 2px solid var(--cor-borda);
+    color: #495057;
+}
+
+/* Acordeão Nativo (Details) */
+details {
+    background-color: var(--cor-fundo);
+    padding: var(--espacamento-sm);
+    border-radius: var(--raio-borda);
+    border: 1px solid var(--cor-borda);
+}
+
+summary {
+    font-weight: bold;
+    color: var(--cor-primaria);
+    cursor: pointer;
+}
+
+/* =========================================
+   5. TABELAS RESPONSIVAS
+   ========================================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--espacamento-sm) 0;
+    display: block;
+    /* Permite scroll horizontal em ecrãs muito pequenos (480px) */
+    overflow-x: auto;
+}
+
+caption {
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    color: var(--cor-secundaria);
+}
+
+th,
+td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+thead {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-claro);
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--cor-fundo);
+}
+
+/* =========================================
+   6. FORMULÁRIOS
+   ========================================= */
+fieldset {
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    padding: var(--espacamento-md);
+}
+
+legend {
+    font-weight: bold;
+    color: var(--cor-primaria);
+    padding: 0 0.5rem;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+form br {
+    display: none;
+    /* O espaçamento agora é controlado pelo Flexbox/Grid */
+}
+
+label {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.65rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+/* Alinhamento específico para Checkbox */
+form div:has(input[type="checkbox"]) {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+button {
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: var(--raio-borda);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-claro);
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: var(--cor-secundaria);
+}
+
+button[type="reset"] {
+    background-color: #6c757d;
+}
+
+button[type="reset"]:hover {
+    background-color: #5a6268;
+}
+
+/* =========================================
+   7. RODAPÉ
+   ========================================= */
+footer {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-claro);
+    text-align: center;
+    padding: var(--espacamento-md) var(--espacamento-sm);
+    margin-top: auto;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: var(--cor-destaque);
+}
+
+/* =========================================
+   8. MEDIA QUERIES (BREAKPOINTS)
+   ========================================= */
+
+/* Breakpoint 1: Mobile padrão (até 480px) já coberto acima (Mobile-First) */
+
+/* Breakpoint 2: Tablet (~768px) */
+@media (min-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    nav ul {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    table {
+        display: table;
+        /* Restaura o comportamento normal da tabela em ecrãs maiores */
+    }
+
+    /* Formulários em grelha de 2 colunas no tablet */
+    fieldset {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--espacamento-sm);
+    }
+
+    /* Faz textarea, checkbox e botões ocuparem a largura total */
+    fieldset div:has(textarea),
+    fieldset div:has(input[type="checkbox"]),
+    fieldset div:has(button) {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        gap: var(--espacamento-sm);
+    }
+}
+
+/* Breakpoint 3: Desktop (~1200px+) */
+@media (min-width: 1200px) {
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--espacamento-sm) var(--espacamento-lg);
+        text-align: left;
+    }
+
+    header p {
+        margin-bottom: 0;
+    }
+
+    nav ul {
+        margin-top: 0;
+    }
+
+    /* Layout em Grid de 2 colunas para a secção principal do Dashboard */
+    main section:first-child {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: var(--espacamento-md);
+        align-items: start;
+    }
+
+    main section:first-child h2 {
+        grid-column: 1 / -1;
+    }
+}
