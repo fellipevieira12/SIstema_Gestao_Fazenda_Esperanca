@@ -1,5 +1,5 @@
 /* =========================================
-   1. VARIÁVEIS CSS E RESET BÁSICO
+1. VARIÁVEIS CSS E RESET BÁSICO
    ========================================= */
 :root {
     /* Paleta de Cores (Contraste > 4.5:1 validado) */
@@ -19,6 +19,8 @@
     --cor-borda: #ced4da;
     --cor-alerta-fundo: #fff3cd;
     --cor-alerta-borda: #ffc107;
+    --cor-erro: #dc3545;
+    --cor-sucesso: #198754;
 
     /* Tipografia e Espaçamentos */
     --fonte-principal: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -46,8 +48,26 @@ body {
 }
 
 /* =========================================
-   2. ACESSIBILIDADE (Foco por Teclado)
+2. ACESSIBILIDADE (Foco por Teclado e Skip Link)
    ========================================= */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-claro);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--raio-borda);
+    font-weight: bold;
+    text-decoration: none;
+    z-index: 1000;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 1rem;
+}
+
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -59,7 +79,7 @@ summary:focus-visible {
 }
 
 /* =========================================
-   3. CABEÇALHO E NAVEGAÇÃO (FLEXBOX)
+3. CABEÇALHO E NAVEGAÇÃO (FLEXBOX)
    ========================================= */
 header {
     background-color: var(--cor-primaria);
@@ -81,14 +101,12 @@ header p {
 
 header hr {
     display: none;
-    /* Oculta o hr visualmente, pois o CSS já separa o header */
 }
 
 nav ul {
     list-style: none;
     display: flex;
     flex-direction: column;
-    /* Mobile-first: menu empilhado */
     gap: var(--espacamento-xs);
     margin-top: var(--espacamento-sm);
 }
@@ -111,7 +129,7 @@ nav a[aria-current="page"] {
 }
 
 /* =========================================
-   4. CONTEÚDO PRINCIPAL E SECÇÕES
+4. CONTEÚDO PRINCIPAL E SECÇÕES
    ========================================= */
 main {
     flex: 1;
@@ -198,14 +216,13 @@ summary {
 }
 
 /* =========================================
-   5. TABELAS RESPONSIVAS
+5. TABELAS RESPONSIVAS
    ========================================= */
 table {
     width: 100%;
     border-collapse: collapse;
     margin: var(--espacamento-sm) 0;
     display: block;
-    /* Permite scroll horizontal em ecrãs muito pequenos (480px) */
     overflow-x: auto;
 }
 
@@ -233,7 +250,7 @@ tbody tr:nth-child(even) {
 }
 
 /* =========================================
-   6. FORMULÁRIOS
+6. FORMULÁRIOS E VALIDAÇÃO NATIVA
    ========================================= */
 fieldset {
     border: 1px solid var(--cor-borda);
@@ -255,7 +272,6 @@ form div {
 
 form br {
     display: none;
-    /* O espaçamento agora é controlado pelo Flexbox/Grid */
 }
 
 label {
@@ -265,6 +281,7 @@ label {
 
 input[type="text"],
 input[type="number"],
+input[type="email"],
 select,
 textarea {
     width: 100%;
@@ -275,7 +292,16 @@ textarea {
     font-size: 1rem;
 }
 
-/* Alinhamento específico para Checkbox */
+input:user-invalid,
+textarea:user-invalid {
+    border-color: var(--cor-erro);
+}
+
+input:valid:not([type="checkbox"]),
+textarea:valid {
+    border-color: var(--cor-sucesso);
+}
+
 form div:has(input[type="checkbox"]) {
     flex-direction: row;
     align-items: center;
@@ -307,7 +333,7 @@ button[type="reset"]:hover {
 }
 
 /* =========================================
-   7. RODAPÉ
+7. RODAPÉ
    ========================================= */
 footer {
     background-color: var(--cor-primaria);
@@ -323,12 +349,8 @@ footer a {
 }
 
 /* =========================================
-   8. MEDIA QUERIES (BREAKPOINTS)
+8. MEDIA QUERIES (BREAKPOINTS)
    ========================================= */
-
-/* Breakpoint 1: Mobile padrão (até 480px) já coberto acima (Mobile-First) */
-
-/* Breakpoint 2: Tablet (~768px) */
 @media (min-width: 768px) {
     header h1 {
         font-size: 2rem;
@@ -342,17 +364,14 @@ footer a {
 
     table {
         display: table;
-        /* Restaura o comportamento normal da tabela em ecrãs maiores */
     }
 
-    /* Formulários em grelha de 2 colunas no tablet */
     fieldset {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: var(--espacamento-sm);
     }
 
-    /* Faz textarea, checkbox e botões ocuparem a largura total */
     fieldset div:has(textarea),
     fieldset div:has(input[type="checkbox"]),
     fieldset div:has(button) {
@@ -362,7 +381,6 @@ footer a {
     }
 }
 
-/* Breakpoint 3: Desktop (~1200px+) */
 @media (min-width: 1200px) {
     header {
         display: flex;
@@ -380,7 +398,6 @@ footer a {
         margin-top: 0;
     }
 
-    /* Layout em Grid de 2 colunas para a secção principal do Dashboard */
     main section:first-child {
         display: grid;
         grid-template-columns: 2fr 1fr;

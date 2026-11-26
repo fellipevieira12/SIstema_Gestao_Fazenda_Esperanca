@@ -9,6 +9,8 @@
 </head>
 
 <body>
+    <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
     <header>
         <h1>Controle de Frota Agrícola</h1>
         <nav aria-label="Menu de Navegação Principal">
@@ -22,7 +24,7 @@
         <hr>
     </header>
 
-    <main>
+    <main id="conteudo-principal">
         <section>
             <h2>Inventário de Maquinário</h2>
             <dl>
@@ -45,7 +47,7 @@
 
                     <div>
                         <label for="veiculo">Selecione o Veículo:</label>
-                        <select id="veiculo" name="veiculo">
+                        <select id="veiculo" name="veiculo" required>
                             <option value="trator1">Trator Valmet 88</option>
                             <option value="colheitadeira1">Colheitadeira Case IH</option>
                             <option value="caminhao1">Caminhão MB 1620</option>
@@ -53,9 +55,22 @@
                     </div>
                     <br>
                     <div>
+                        <label for="emailResponsavel">E-mail do Responsável Técnico:</label>
+                        <input type="email" id="emailResponsavel" name="emailResponsavel" required
+                            placeholder="tecnico@fazenda.com.br">
+                    </div>
+                    <br>
+                    <div>
+                        <label for="codigoOrdem">Código da Ordem de Serviço (OS):</label>
+                        <input type="text" id="codigoOrdem" name="codigoOrdem" required pattern="^OS-[0-9]{4}$"
+                            title="Digite no formato OS-0000 (ex: OS-1024)" placeholder="OS-1024">
+                    </div>
+                    <br>
+                    <div>
                         <label for="descricaoProblema">Descrição do Problema ou Serviço Feito:</label>
                         <br>
                         <textarea id="descricaoProblema" name="descricaoProblema" rows="4" cols="50" required
+                            minlength="10"
                             placeholder="Descreva os serviços realizados, como alinhamento, troca de óleo, sangria de freios..."></textarea>
                     </div>
                     <br>
