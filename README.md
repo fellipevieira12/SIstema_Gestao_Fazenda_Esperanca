@@ -1,36 +1,44 @@
-# Registro de Uso de IA Generativa - Entrega 2 (Estilo e Responsividade)
+# Registro de Uso de IA Generativa - Entrega 3 (Formulário e Refinamento)
 
 **Nome do Aluno:** Fellipe Augusto Arêas Vieira
 **Projeto:** Sistema de Gestão Fazenda Esperança
 **Ferramenta de IA Utilizada:** Google Gemini
 
 ## 1. Mapeamento de Uso
-A Inteligência Artificial foi utilizada como apoio na criação da folha de estilos externa (`html/css/style.css`), auxiliando na definição das variáveis CSS (`:root`), na estruturação dos layouts com Flexbox e CSS Grid, na configuração dos 3 breakpoints de responsividade (mobile, tablet e desktop) e na implementação de estilos de foco para acessibilidade via teclado.
+A Inteligência Artificial foi utilizada como apoio na etapa final de refinamento da interface web, auxiliando na implementação do atalho de acessibilidade (`skip-link`) nas 4 páginas HTML (`index.html`, `talhoes.html`, `equipe.html` e `frota.html`), na aplicação dos atributos nativos de validação de formulários do HTML5 (`pattern`, `type="email"`, `minlength`, `min`, `max`, `step`) e na estilização dos estados de validação (`:user-invalid` e `:valid`) no arquivo `html/css/style.css`.
 
 ## 2. Prompts Utilizados
-Durante o desenvolvimento da Entrega 2, foram utilizados os seguintes comandos na ferramenta:
-1. "[imagem com requisitos da Entrega 2 — Estilo e Responsividade]"
-2. "o passo 1 tem que ser feito em quais modulos?"
-3. "qual o proximo"
-4. "Quer que eu prepare o modelo do Registro_Uso_IA.md para a Entrega 2 ou prefere testar primeiro o visual das páginas no navegador? sim"
+Durante o desenvolvimento da Entrega 3, foram utilizados os seguintes comandos na ferramenta:
+1. "do ponto que paramos, o que falta para ficar completo? [anexo: Projeto Integrador_2.pdf]"
+2. "2. Adicionar o 'Skip Link' (Acessibilidade) sobre esse, vou te mandar os codigos, poderia aplicar para mim?"
+3. "[código do index.html]"
+4. "[código do style.css] aonde?"
+5. "aplique ela no codigo e mande ele todo arrumado, sem comentarios"
+6. "[código do equipe.html]"
+7. "[código do frota.html]"
+8. "[código do style.css] corrija"
+9. "[código do talhoes.html]"
+10. "[texto do Registro de Uso de IA da Entrega 2] ajuste"
 
-## 3. Justificativa da Abordagem de Design Responsivo
-Foi adotada a abordagem **Mobile-First**, estruturando os estilos base para telas de até 480px (menu empilhado, tabelas com rolagem horizontal e formulários em coluna única) e expandindo progressivamente por meio de `@media (min-width: ...)` para tablet (~768px) e desktop (~1200px+). Essa escolha garante legibilidade e integridade visual em dispositivos móveis sem sobrecarga de regras de sobrescrita.
+## 3. Justificativa das Decisões Técnicas (Acessibilidade, Responsividade e Validação)
+* **Abordagem Mobile-First:** Mantida a estrutura base voltada para dispositivos móveis (até 480px) com expansão via `@media (min-width: ...)` para tablet (~768px) e desktop (~1200px+), garantindo integridade visual e legibilidade dos formulários em todas as resoluções.
+* **Acessibilidade:** Implementado o `skip-link` oculto visualmente (`top: -100px`) e visível ao receber foco via teclado (`Tab`), direcionando diretamente ao `<main id="conteudo-principal">`, somado ao contraste superior a 4.5:1 validado na paleta `:root`.
+* **Validação Nativa HTML5:** Utilizados recursos nativos sem dependência de JavaScript (`required`, `type="email"`, `pattern` com regex e `title` descritivo) para bloquear submissões inválidas diretamente pelo navegador.
 
 ## 4. Revisão Técnica (Modificações Realizadas no Código Gerado)
 Abaixo estão detalhadas 3 modificações técnicas realizadas manualmente nos arquivos gerados pela IA:
 
-* **Modificação 1: Remoção de atributos de estilização inline no HTML (`border="1"`)**
-  * **O que a IA gerou:** Na Entrega 1, as tabelas dos arquivos `index.html` e `equipe.html` possuíam o atributo `border="1"` diretamente na tag `<table>`.
-  * **O que foi alterado:** Removi o atributo `border="1"` das tags HTML e transferi o controle visual de bordas e espaçamentos exclusivamente para o arquivo `html/css/style.css` usando `border-collapse: collapse` e variáveis CSS.
-  * **Por que foi alterado (Justificativa):** Para manter a separação estrita de responsabilidades entre estrutura (HTML) e apresentação (CSS), evitando conflitos de especificidade e garantindo consistência visual em todos os breakpoints.
+- **Modificação 1: Correção do seletor universal de reset no CSS (`*`)**
+  - **O que a IA gerou:** Na versão anterior do `style.css`, o bloco de reset global estava definido com um hífen (`- { box-sizing: border-box; ... }`).
+  - **O que foi alterado:** Substituí o hífen pelo seletor universal correto `* { box-sizing: border-box; margin: 0; padding: 0; }`.
+  - **Por que foi alterado (Justificativa):** O navegador ignorava a regra inválida com hífen, fazendo com que os inputs e containers somassem `padding` e `border` às larguras de 100%, o que causava estouro horizontal (quebra de layout) no breakpoint mobile de 480px.
 
-* **Modificação 2: Ajuste do seletor de Grid na seção principal do Dashboard (`index.html`)**
-  * **O que a IA gerou:** Uma regra CSS genérica (`main section:first-child { display: grid; ... }`) aplicada a todas as páginas que importam o `style.css`.
-  * **O que foi alterado:** Adicionei uma classe específica (`.grid-dashboard`) apenas na primeira `<section>` do `index.html` e direcionei a regra de CSS Grid de 2 colunas exclusivamente para essa classe no breakpoint de desktop (`min-width: 1200px`).
-  * **Por que foi alterado (Justificativa):** Nas páginas `talhoes.html`, `equipe.html` e `frota.html`, a primeira seção contém apenas um formulário ou tabela única; aplicar um grid de 2 colunas genérico deixava metade da largura da tela vazia nesses módulos.
+- **Modificação 2: Inclusão de `input[type="email"]` na regra de estilização dos formulários**
+  - **O que a IA gerou:** A regra de estilo base dos campos de formulário no `style.css` contemplava apenas `input[type="text"]`, `input[type="number"]`, `select` e `textarea`.
+  - **O que foi alterado:** Adicionei o seletor `input[type="email"]` à regra compartilhada de largura, espaçamento interno (`padding: 0.65rem`) e bordas no `style.css` após criar o campo de e-mail do responsável técnico em `frota.html`.
+  - **Por que foi alterado (Justificativa):** Sem a inclusão explícita desse seletor, o campo de e-mail mantinha a aparência padrão do navegador, quebrando a uniformidade visual e a largura do grid de 2 colunas nos breakpoints de tablet e desktop.
 
-* **Modificação 3: Validação e ajuste de contraste na paleta de cores (`:root`)**
-  * **O que a IA gerou:** Um tom de verde claro (`--cor-destaque: #d8f3dc`) utilizado como fundo de itens ativos no menu de navegação (`nav a[aria-current="page"]`) e links no rodapé.
-  * **O que foi alterado:** Verifiquei o contraste no WebAIM Contrast Checker e ajustei o texto do item ativo no menu para `--cor-primaria` (`#1b4332`) sobre o fundo `--cor-destaque`, garantindo uma taxa de contraste superior a 10:1.
-  * **Por que foi alterado (Justificativa):** Para atender rigorosamente ao requisito de acessibilidade do projeto, que exige contraste mínimo de 4.5:1 entre texto e plano de fundo em todos os estados visuais da interface.
+- **Modificação 3: Ajuste das expressões regulares (`pattern`) e limites numéricos aos dados reais do sistema**
+  - **O que a IA gerou:** Atributos genéricos de validação nos formulários e campos sem restrição de formato ou casas decimais.
+  - **O que foi alterado:** Defini o padrão `^OS-[0-9]{4}$` para o código de Ordem de Serviço em `frota.html` e configurei `min="0.5"`, `max="1000"` e `step="0.1"` no campo de hectares em `talhoes.html`, além de vincular feedback visual com `:user-invalid`.
+  - **Por que foi alterado (Justificativa):** Para garantir que a validação nativa do navegador impeça entradas incompatíveis com a estrutura de dados do sistema (como áreas negativas ou códigos de ordem fora do padrão operacional da fazenda) antes mesmo de qualquer processamento.
